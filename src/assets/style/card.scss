@@ -1,0 +1,80 @@
+.card {
+  position: relative;
+  max-width: 336px;
+  width: 100%;
+  height: 100%;
+  padding: 9px 12px;
+  margin: 0 0 40px;
+  border: 1px solid #EEEEEE;
+  .discount {
+    position: absolute;
+    left: 0;
+    padding: 3px 16px;
+    width: max-content;
+    background: #EB5757;
+    color: white;
+    font-family: 'SF Pro Display';
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .image {
+    height: 237px;
+    margin: 0 auto 23px;
+  }
+  .code {
+    font-size: 10px;
+    min-height: 10px;
+    color: #888888;
+    margin: 0 0 6px;
+  }
+  .name {
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0 0 9px;
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 20px;
+    .prices {
+      display: flex;
+      font-size: 16px;
+      &__old-price {
+        text-decoration-line: line-through;
+        color: #888888;
+        margin: 0 9px 0 0;
+      }
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      &__cart {
+        background-image: url('../images/cart.svg');
+        width: 18px;
+        height: 18px;
+        margin: 0 28px 0 0;
+        cursor: pointer;
+      }
+      &__chosen {
+        background-image: url('../images/choose.svg');
+        width: 20px;
+        height: 20px;
+        margin: 0 28px 0 0;
+        cursor: pointer;
+      }
+      &__favorite {
+        background-image: url('../images/favorite.svg');
+        width: 20px;
+        height: 18px;
+        cursor: pointer;
+        &:hover {
+          background-image: url('../images/favorite-fill.svg');
+        }
+        &.--active {
+          background-image: url('../images/favorite-fill.svg');
+        }
+      }
+    }
+  }
+}

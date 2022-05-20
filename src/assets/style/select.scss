@@ -1,0 +1,29 @@
+.select {
+  margin: 0 24px 40px 0;
+  &-title {
+    font-size: 12px;
+    font-weight: 400;
+    color: #4F4F4F;
+    margin: 0 0 6px 16px;
+  }
+  &-area {
+    min-width: 288px;
+    background-color: #F2F2F2;
+    border: none;
+    padding: 9px 16px;
+    letter-spacing: inherit;
+    word-spacing: inherit;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    &:not([multiple]) {
+      padding-right: 1.2em;
+      background-repeat: no-repeat;
+      background-position: 251px 15px;
+      background-image: url('../images/arrow-down.svg');
+    }  
+    select::-ms-expand {
+      display: none;
+    }
+  };
+}

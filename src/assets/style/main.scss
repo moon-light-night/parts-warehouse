@@ -1,0 +1,64 @@
+@import url('./sfProDisplay.scss');
+@import url('./sfUiText.scss');
+@import url('./navigation.scss');
+@import url('./card.scss');
+@import url('./select.scss');
+
+html,
+body,
+div,
+span,
+section {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  box-sizing: border-box;
+  font-family: SF UI Text;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+
+.app {
+  max-width: 1488px;
+  padding: 10px;
+  margin: 22px auto 100px;
+  &-title {
+    font-family: 'SF Pro Display';
+    font-size: 36px;
+    line-height: 48px;
+    margin: 0 0 32px;
+    color: #000;
+    @media(max-width: 643px) {
+      text-align: center;
+    }
+  }
+  &-sorting {
+    display: flex;
+    flex-wrap: wrap;
+    @media(max-width: 643px) {
+      justify-content: center;
+    }
+  }
+  &-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    &::after {
+      content: '';
+      width: 336px;
+      height: 1px;
+    }
+    @media(max-width: 691px) {
+      justify-content: center;
+    }
+  }
+}

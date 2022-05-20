@@ -1,27 +1,68 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="app">
+    <div class="app-navigation">
+      <Navigation />
+    </div>
+    <div class="app-title">
+      Комплекты стеллажных систем
+    </div>
+    <div class="app-sorting">
+      <CustomSelect 
+        title="Сортировать по:"
+        :sortList="sortDirectonList"
+        @sortBy="sortBy"
+      />
+      <CustomSelect 
+        title="Материал"
+        :sortList="materials"
+        @sortBy="sortBy"
+      />
+    </div>
+    <div class="app-cards">
+      <Card 
+        v-for="card in filteredCards"
+        :key="`card-${card.id}`"
+        :card="card"
+      />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from './components/HelloWorld.vue';
+import { computed, defineComponent } from 'vue'
+import SortDirections from '@/data/types/sortEnums'
+import Navigation from '@/components/Navigation.vue'
+import CustomSelect from '@/components/CustomSelect.vue'
+import Card from '@/components/Card.vue'
+import materials from '@/data/materials.json'
+import sortDirectonList from '@/data/sortDirections.json'
+import { useStore } from 'vuex'
 
-@Options({
+export default defineComponent({
   components: {
-    HelloWorld,
+    Navigation,
+    CustomSelect,
+    Card
   },
-})
-export default class App extends Vue {}
-</script>
+  setup() {
+    const store = useStore()
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+    const cards = computed(() => store.getters['cards'])
+    const filteredCards = computed(() => store.getters['filteredCards'])
+
+    const sortBy = (sortType: string):void => {
+      if(sortType === SortDirections.MATERIAL_WOOD || sortType === SortDirections.MATERIAL_STEEL) {
+        store.dispatch('filterCards', sortType)
+      }
+      if(sortType === SortDirections.ASCENDING || sortType === SortDirections.DESCENDING) {
+        store.dispatch('sortCards', sortType)
+      }
+    }
+
+    // created
+    store.dispatch('fetchCardsData')
+
+    return { sortDirectonList, materials, cards, filteredCards, sortBy }
+  }
+})
+</script>
